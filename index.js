@@ -7,6 +7,15 @@ const app = express();
 var FormData = require('form-data');
 var multer = require('multer');
 var upload = multer();
+const mysql = require('mysql');
+let mysqlConnection = mysql.createPool({
+  connectionLimit : 100,
+  host : "l0ebsc9jituxzmts.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+  user : "qyjdsq01sscbk4ad",
+  password : "x219iq09660yayx2",
+  database : "ljherwo4dzx1zk96",
+  port : 3306
+})
 
 app.use(bodyParser.json({limit : '50mb'}));
 app.use(bodyParser.urlencoded({
@@ -122,6 +131,36 @@ app.post('/api/okay/scorecard', async(req, res) => {
     console.log(err);
   });
 })
+
+// app.post('/api/retrieve-scan-data', async(req, res) => {
+//   const body = req.body;
+//   const scanID = body.scanID;
+
+//   mysqlConnection.getConnection(function(err, connection){
+//     if(err){
+//       recreateConnectionPoolMySQL();
+//       return;
+//     }
+
+//     // connection.query('CREEA')
+
+//     connection.query('SELECT scanReference where scanId = ' + scanID, function(error, results, fields){
+      
+//     })
+//   })
+  
+//   async function recreateConnectionPoolMySQL(){
+//     mysqlConnection = mysql.createPool({
+//       connectionLimit : 100,
+//       host : "l0ebsc9jituxzmts.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+//       user : "qyjdsq01sscbk4ad",
+//       password : "x219iq09660yayx2",
+//       database : "ljherwo4dzx1zk96",
+//       port : 3306
+//     });
+//     return res.redirect('/api/retrieve-scan-data');
+//   }
+// })
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.

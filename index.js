@@ -132,6 +132,10 @@ app.post('/api/okay/scorecard', async(req, res) => {
   });
 })
 
+app.post('/api/jumio/initiate', async(req, res) => {
+  const body = req.body;
+})
+
 // app.post('/api/retrieve-scan-data', async(req, res) => {
 //   const body = req.body;
 //   const scanID = body.scanID;
